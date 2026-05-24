@@ -18,7 +18,11 @@ initSocket(io);
 
 // Middleware
 app.use(cors({
-  origin: "*",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    // and all other origins (adjust for production if needed)
+    callback(null, true);
+  },
   credentials: true
 }));
 app.use(express.json());
