@@ -49,7 +49,7 @@ module.exports = (io) => {
             stopLat: sLat, stopLng: sLng,
             currentSpeed: bus.currentSpeed,
           });
-          if (eta.distanceKm > 50) return null;
+          if (eta.distanceKm > 150) return null;
           return {
             busId:      bus.busId,
             name:       bus.name || bus.busId,
