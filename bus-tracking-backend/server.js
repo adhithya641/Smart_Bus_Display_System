@@ -17,7 +17,10 @@ connectDB();
 initSocket(io);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true
+}));
 app.use(express.json());
 
 // Request logging
@@ -54,6 +57,11 @@ app.use("/api", legacyApi);
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
+// Root route
+app.get("/", (req, res) => {
+  res.send("Smart Bus Tracking Backend Running Successfully");
 });
 
 // Global error handler
